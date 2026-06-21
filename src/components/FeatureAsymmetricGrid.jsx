@@ -78,8 +78,9 @@ export default function FeatureAsymmetricGrid() {
       <div className="container">
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
             gap: '24px',
             maxWidth: '1000px',
             margin: '0 auto',
@@ -89,6 +90,10 @@ export default function FeatureAsymmetricGrid() {
             <div
               key={idx}
               style={{
+                width: 'calc(33.333% - 16px)',
+                minWidth: '280px',
+                maxWidth: '317px',
+                flexGrow: 1,
                 backgroundColor: 'var(--color-graphite)',
                 padding: '32px',
                 borderRadius: 'var(--radius-cards)',

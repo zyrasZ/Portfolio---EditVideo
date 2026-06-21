@@ -77,16 +77,17 @@ export default function AboutMe() {
                 paddingTop: '16px',
                 display: 'flex',
                 justifyContent: 'space-between',
-                fontSize: '12px',
+                fontSize: '13px',
                 color: 'var(--color-charcoal)',
+                gap: '16px',
               }}
             >
-              <div>
-                <strong style={{ display: 'block', fontSize: '14px', color: 'var(--color-carbon)' }}>1 Năm</strong>
+              <div style={{ flex: 1 }}>
+                <strong style={{ display: 'block', fontSize: '16px', color: 'var(--color-carbon)', marginBottom: '4px' }}>1 Năm</strong>
                 Kinh nghiệm
               </div>
-              <div>
-                <strong style={{ display: 'block', fontSize: '14px', color: 'var(--color-carbon)' }}>100%</strong>
+              <div style={{ flex: 1, textAlign: 'right' }}>
+                <strong style={{ display: 'block', fontSize: '16px', color: 'var(--color-carbon)', marginBottom: '4px' }}>100%</strong>
                 Đam mê & Nhiệt huyết
               </div>
             </div>
