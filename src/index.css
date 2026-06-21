@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* Colors */
+  --color-lime-spark: #96ff1a;
+  --color-spring-wash: #d6ffa6;
+  --color-forest-ink: #083300;
+  --color-mint-mist: #e6ffc8;
+  --color-carbon: #0c0a09;
+  --color-charcoal: #323232;
+  --color-graphite: #292a2e;
+  --color-onyx: #121212;
+  --color-slate: #4d4d51;
+  --color-smoke: #71737a;
+  --color-ash: #444446;
+  --color-mist: #f2f1f0;
+  --color-fog: #e6e6e7;
+  --color-paper: #ffffff;
+
+  /* Typography — Font Families */
+  --font-swissnow: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ppeditorialnew: 'Playfair Display', Georgia, serif;
+
+  /* Typography — Scale & Tracking */
+  --text-caption: 11px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.01px;
+
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: -0.016px;
+
+  --text-subheading: 40px;
+  --leading-subheading: 1.1;
+  --tracking-subheading: -0.025px;
+
+  --text-heading: 44px;
+  --leading-heading: 0.95;
+  --tracking-heading: -0.04px;
+
+  --text-display: 54px;
+  --leading-display: 0.88;
+  --tracking-display: -0.05px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-96: 96px;
+  --spacing-100: 100px;
+  --spacing-120: 120px;
+  --spacing-140: 140px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 16px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 10px;
+  --radius-2xl: 16px;
+  --radius-3xl: 32px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-cards: 16px;
+  --radius-pills: 9999px;
+  --radius-inputs: 10px;
+  --radius-buttons: 10px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(68, 68, 70, 0.15) 0px 1px 2px -1px, rgba(68, 68, 70, 0.05) 0px 2px 5px 0px;
+
+  /* Surfaces */
+  --surface-paper: #ffffff;
+  --surface-mist: #f2f1f0;
+  --surface-spring-wash: #d6ffa6;
+  --surface-onyx: #121212;
+  --surface-graphite: #292a2e;
+}
+
+/* Base resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-paper);
+  color: var(--color-carbon);
+  font-family: var(--font-swissnow);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--color-paper);
+}
+
+/* Typography styles */
+.font-swiss {
+  font-family: var(--font-swissnow);
+}
+
+.font-editorial {
+  font-family: var(--font-ppeditorialnew);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-regular);
+}
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding-left: var(--spacing-24);
+  padding-right: var(--spacing-24);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-mist);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-smoke);
+  border-radius: var(--radius-lg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-charcoal);
+}
+
+/* Button & Link Interactions */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Custom animations helper classes */
+.reveal-text {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.glow-on-hover {
+  position: relative;
+  overflow: hidden;
+}
+.glow-on-hover::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.5s;
+}
+.glow-on-hover:hover::after {
+  left: 100%;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-fog);
+}
+
+.glass-dark {
+  background: rgba(18, 18, 18, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-ash);
+}

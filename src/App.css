@@ -1,0 +1,14 @@
+/* Custom styles for App container */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--color-paper);
+}
+
+.main-content {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
