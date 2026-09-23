@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, Menu, X, ArrowRight } from 'lucide-react';
+import { CaretDown, List, X, ArrowRight } from '@phosphor-icons/react';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -129,7 +129,7 @@ export default function Navbar() {
           }}
           aria-label="Toggle Menu"
         >
-          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          {mobileMenuOpen ? <X size={20} /> : <List size={20} />}
         </button>
       </div>
 

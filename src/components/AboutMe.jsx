@@ -1,5 +1,5 @@
 import React from 'react';
-import { Film } from 'lucide-react';
+import { FilmStrip } from '@phosphor-icons/react';
 
 export default function AboutMe() {
   return (
@@ -46,7 +46,7 @@ export default function AboutMe() {
                   boxShadow: '0 0 16px rgba(150, 255, 26, 0.4)',
                 }}
               >
-                <Film size={28} style={{ color: 'var(--color-forest-ink)' }} />
+                <FilmStrip size={28} style={{ color: 'var(--color-forest-ink)' }} />
               </div>
               <h3
                 className="font-swiss"
@@ -139,6 +139,29 @@ export default function AboutMe() {
               Chào bạn, mình là Phát – một Video Editor với gần 1 năm kinh nghiệm thực chiến chuyên sâu trong lĩnh vực Short Video Marketing. Thế mạnh của mình là tối ưu hóa nội dung, giữ chân người xem trong "3 giây đầu tiên" trên các nền tảng mạng xã hội như Facebook Reels, TikTok, YouTube Shorts và cả các định dạng Long-form.
             </p>
             
+            <ul
+              className="font-swiss"
+              style={{
+                fontSize: '15px',
+                lineHeight: '1.6',
+                color: 'var(--color-charcoal)',
+                paddingLeft: '20px',
+                marginBottom: '16px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '8px'
+              }}
+            >
+              <li>
+                <strong>Kỹ năng chuyên môn:</strong> Tư duy nhịp điệu (pacing) linh hoạt, chọn nhạc "bắt mood", tư duy màu sắc tốt.
+              </li>
+              <li>
+                <strong>Đa dạng phong cách:</strong> Từ kích thích vị giác (Food), trong trẻo (Beauty), đến hiện đại, gãy gọn (Tech) và phóng khoáng (Travel vlog).
+              </li>
+              <li>
+                <strong>Tư duy Marketing:</strong> Hiểu sâu insight khách hàng từ kinh nghiệm quản lý fanpage mỹ phẩm và nước hoa xách tay, biết cách kể chuyện để thúc đẩy chuyển đổi.
+              </li>
+            </ul>
             <p
               className="font-swiss"
               style={{
@@ -147,7 +170,7 @@ export default function AboutMe() {
                 color: 'var(--color-charcoal)',
               }}
             >
-              Dù thời gian vào nghề chưa quá lâu, mình tự tin sở hữu tư duy nhịp điệu (pacing) linh hoạt, gu chọn nhạc bắt mood và tư duy màu sắc tốt. Mình có thể biến hóa đa dạng từ phong cách kích thích vị giác của mảng Food, sự trong trẻo của Beauty, cho đến nét hiện đại, gãy gọn của Tech hay sự phóng khoáng của Vlog du lịch. Mình từng đồng hành cùng các kênh lớn như FoodSources và Metro Go để sản xuất ra những nội dung chất lượng cao, mang lại giá trị thực cho thương hiệu.
+              Bên cạnh đó, mình từng đồng hành cùng các kênh lớn như FoodSources và Metro Go để sản xuất ra những nội dung chất lượng cao, mang lại giá trị thực cho thương hiệu.
             </p>
           </div>
 

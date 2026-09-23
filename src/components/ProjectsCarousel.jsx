@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { gsap } from 'gsap';
+import { motion, AnimatePresence } from 'framer-motion';
 
 /* ─── SVG Icons ─── */
 const YoutubeIcon = () => (
@@ -91,9 +92,8 @@ const projects = [
 ];
 
 /* ─── Single Card ─── */
-function ProjectCard({ proj, index }) {
+function ProjectCard({ proj, index, onPlay }) {
   const cardRef = useRef(null);
-  const [playing, setPlaying] = useState(false);
   const [hovered, setHovered] = useState(false);
 
   const thumbnailUrl = proj.youtubeId
@@ -120,19 +120,10 @@ function ProjectCard({ proj, index }) {
 
   const handlePlay = () => {
     if (isFacebook) {
-      // Facebook Reels can't be embedded — open in new tab
       window.open(proj.videoUrl, '_blank', 'noopener,noreferrer');
     } else {
-      setPlaying(true);
+      onPlay(proj);
     }
-  };
-
-  // Build embed src — hide all YouTube UI
-  const getEmbedSrc = () => {
-    if (proj.youtubeId) {
-      return `https://www.youtube-nocookie.com/embed/${proj.youtubeId}?autoplay=1&mute=0&loop=1&playlist=${proj.youtubeId}&rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3&disablekb=1&fs=0&playsinline=1`;
-    }
-    return proj.embedUrl || '';
   };
 
   return (
@@ -167,42 +158,16 @@ function ProjectCard({ proj, index }) {
         style={{
           position: 'relative',
           width: '100%',
-          paddingTop: playing ? '130%' : '65%',
+          paddingTop: '65%',
           overflow: 'hidden',
           borderRadius: '20px 20px 0 0',
           backgroundColor: '#000',
           transition: 'padding-top 0.4s ease',
         }}
       >
-        {playing ? (
-          /* ── Embedded Video Player — oversized + cropped to hide YT UI ── */
-          <div
-            style={{
-              position: 'absolute',
-              top: '-60px',
-              left: '-4px',
-              right: '-4px',
-              bottom: '-20px',
-              overflow: 'hidden',
-              pointerEvents: 'auto',
-            }}
-          >
-            <iframe
-              src={getEmbedSrc()}
-              title={proj.title}
-              style={{
-                width: 'calc(100% + 8px)',
-                height: 'calc(100% + 80px)',
-                border: 'none',
-                display: 'block',
-              }}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            />
-          </div>
-        ) : (
-          /* ── Thumbnail + Play Button ── */
-          <>
-            {thumbnailUrl ? (
+        /* ── Thumbnail + Play Button ── */
+        <>
+          {thumbnailUrl ? (
               <img
                 src={thumbnailUrl}
                 alt={proj.title}
@@ -323,7 +288,6 @@ function ProjectCard({ proj, index }) {
               </div>
             )}
           </>
-        )}
       </div>
 
       {/* ── Card Body ── */}
@@ -413,80 +377,28 @@ function ProjectCard({ proj, index }) {
 
         {/* Action buttons */}
         <div style={{ display: 'flex', gap: '8px', marginTop: '4px' }}>
-          {isFacebook ? (
-            /* Facebook — always opens in new tab */
-            <a
-              href={proj.videoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="watch-btn"
-              style={{
-                flex: 1,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '6px',
-                padding: '11px 16px',
-                borderRadius: '12px',
-                backgroundColor: '#1877f2',
-                color: '#ffffff',
-                fontSize: '12px',
-                fontWeight: '700',
-                border: 'none',
-                textDecoration: 'none',
-                cursor: 'pointer',
-                transition: 'all 0.25s ease',
-              }}
-            >
-              <FacebookIcon /> Xem trên Facebook
-            </a>
-          ) : !playing ? (
-            <button
-              onClick={handlePlay}
-              className="watch-btn"
-              style={{
-                flex: 1,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '6px',
-                padding: '11px 16px',
-                borderRadius: '12px',
-                backgroundColor: proj.isAccent ? 'var(--color-lime-spark)' : 'rgba(255,255,255,0.12)',
-                color: proj.isAccent ? 'var(--color-forest-ink)' : '#ffffff',
-                fontSize: '12px',
-                fontWeight: '700',
-                border: proj.isAccent ? 'none' : '1px solid rgba(255,255,255,0.1)',
-                cursor: 'pointer',
-                transition: 'all 0.25s ease',
-              }}
-            >
-              <PlayIcon size={14} /> Xem video ngay
-            </button>
-          ) : (
-            <button
-              onClick={() => setPlaying(false)}
-              className="watch-btn"
-              style={{
-                flex: 1,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '6px',
-                padding: '11px 16px',
-                borderRadius: '12px',
-                backgroundColor: 'rgba(255,255,255,0.08)',
-                color: '#ffffff',
-                fontSize: '12px',
-                fontWeight: '600',
-                border: '1px solid rgba(255,255,255,0.12)',
-                cursor: 'pointer',
-                transition: 'all 0.25s ease',
-              }}
-            >
-              ✕ Đóng video
-            </button>
-          )}
+          <button
+            onClick={handlePlay}
+            className="watch-btn"
+            style={{
+              flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+              padding: '11px 16px',
+              borderRadius: '12px',
+              backgroundColor: proj.isAccent ? 'var(--color-lime-spark)' : 'rgba(255,255,255,0.12)',
+              color: proj.isAccent ? 'var(--color-forest-ink)' : '#ffffff',
+              fontSize: '12px',
+              fontWeight: '700',
+              border: proj.isAccent ? 'none' : '1px solid rgba(255,255,255,0.1)',
+              cursor: 'pointer',
+              transition: 'all 0.25s ease',
+            }}
+          >
+            <PlayIcon size={14} /> Xem video ngay
+          </button>
         </div>
       </div>
     </div>
@@ -496,6 +408,23 @@ function ProjectCard({ proj, index }) {
 /* ─── Main Section ─── */
 export default function ProjectsCarousel() {
   const sectionRef = useRef(null);
+  const [activeVideo, setActiveVideo] = useState(null);
+
+  useEffect(() => {
+    if (activeVideo) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [activeVideo]);
+
+  const getEmbedSrc = (proj) => {
+    if (proj.youtubeId) {
+      return `https://www.youtube-nocookie.com/embed/${proj.youtubeId}?autoplay=1&rel=0&modestbranding=1&controls=1&fs=1`;
+    }
+    return proj.embedUrl || '';
+  };
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -584,10 +513,100 @@ export default function ProjectsCarousel() {
           }}
         >
           {projects.map((proj, index) => (
-            <ProjectCard key={proj.id} proj={proj} index={index} />
+            <ProjectCard key={proj.id} proj={proj} index={index} onPlay={setActiveVideo} />
           ))}
         </div>
       </div>
+
+      {/* ── Video Modal ── */}
+      <AnimatePresence>
+        {activeVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              backgroundColor: 'rgba(0,0,0,0.85)',
+              backdropFilter: 'blur(10px)',
+              zIndex: 9999,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '20px',
+            }}
+            onClick={() => setActiveVideo(null)}
+          >
+            <motion.button
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+              transition={{ delay: 0.1, duration: 0.2 }}
+              onClick={() => setActiveVideo(null)}
+              style={{
+                position: 'absolute',
+                top: '24px',
+                right: '24px',
+                background: 'rgba(255,255,255,0.1)',
+                border: 'none',
+                borderRadius: '50%',
+                width: '48px',
+                height: '48px',
+                color: '#fff',
+                fontSize: '24px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 10000,
+                transition: 'background 0.2s',
+              }}
+              onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
+              onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
+            >
+              ✕
+            </motion.button>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 30 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              style={{
+                position: 'relative',
+                width: '100%',
+                maxWidth: activeVideo.youtubeId ? '450px' : '900px',
+                height: activeVideo.youtubeId ? '80vh' : '60vh',
+                aspectRatio: activeVideo.youtubeId ? '9/16' : '16/9',
+                maxHeight: '90vh',
+                backgroundColor: '#000',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+              }}
+              onClick={(e) => e.stopPropagation()} 
+            >
+              <iframe
+                src={getEmbedSrc(activeVideo)}
+                title={activeVideo.title}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  border: 'none',
+                  display: 'block',
+                }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <style dangerouslySetInnerHTML={{ __html: `
         .channel-link-btn:hover {

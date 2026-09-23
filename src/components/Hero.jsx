@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Sparkles } from 'lucide-react';
+import { Play, Sparkle, MapPin, Briefcase, Envelope, Phone } from '@phosphor-icons/react';
 import avatarImg from '../assets/avatar.jpg';
 
 export default function Hero() {
@@ -71,9 +71,9 @@ export default function Hero() {
                 "Biến hình ảnh sản phẩm thành trải nghiệm thị giác kích thích vị giác, khát khao mua sắm và truyền cảm hứng sống."
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px', alignItems: 'flex-start', color: 'var(--color-charcoal)' }}>
-                <span>📍 Vị trí: Thành phố Hồ Chí Minh</span>
-                <span>💼 Hình thức làm việc: Freelance / Part-time / Remote</span>
-                <span>📩 Email: thaiphat5b@gmail.com | 📞 Zalo: 0565356513</span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><MapPin size={16} weight="fill" color="var(--color-smoke)"/> Vị trí: Thành phố Hồ Chí Minh</span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Briefcase size={16} weight="fill" color="var(--color-smoke)"/> Hình thức làm việc: Freelance / Part-time / Remote</span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Envelope size={16} weight="fill" color="var(--color-smoke)"/> Email: thaiphat5b@gmail.com <span style={{ margin: '0 4px' }}>|</span> <Phone size={16} weight="fill" color="var(--color-smoke)"/> Zalo: 0565356513</span>
               </div>
             </div>
 
@@ -103,7 +103,7 @@ export default function Hero() {
                   boxShadow: 'var(--shadow-subtle)',
                 }}
               >
-                <Play size={16} fill="var(--color-forest-ink)" stroke="none" /> Các dự án nổi bật
+                <Play size={16} weight="fill" color="var(--color-forest-ink)" /> Các dự án nổi bật
               </a>
               <a
                 href="#capabilities"
@@ -120,7 +120,7 @@ export default function Hero() {
                   gap: '8px',
                 }}
               >
-                <Sparkles size={16} /> Kỹ năng & Công cụ
+                <Sparkle size={16} /> Kỹ năng & Công cụ
               </a>
             </div>
           </div>

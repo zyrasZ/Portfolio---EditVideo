@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, Facebook, Linkedin, ArrowRight } from 'lucide-react';
+import { Envelope, Phone, FacebookLogo, YoutubeLogo, LinkedinLogo, ArrowRight } from '@phosphor-icons/react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -81,7 +81,7 @@ export default function Footer() {
                   gap: '8px',
                 }}
               >
-                <Mail size={16} /> thaiphat5b@gmail.com
+                <Envelope size={16} /> thaiphat5b@gmail.com
               </a>
               <a
                 href="tel:0565356513"
@@ -157,10 +157,13 @@ export default function Footer() {
             }}
           >
             <a href="#" className="simple-footer-link">
-              Facebook <Facebook size={14} style={{ display: 'inline' }} />
+              Facebook <FacebookLogo size={16} weight="fill" style={{ display: 'inline' }} />
             </a>
             <a href="#" className="simple-footer-link">
-              Linkedin <Linkedin size={14} style={{ display: 'inline' }} />
+              Youtube <YoutubeLogo size={16} weight="fill" style={{ display: 'inline' }} />
+            </a>
+            <a href="#" className="simple-footer-link">
+              Linkedin <LinkedinLogo size={16} weight="fill" style={{ display: 'inline' }} />
             </a>
           </div>
 

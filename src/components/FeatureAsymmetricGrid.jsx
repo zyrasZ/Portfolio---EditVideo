@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layers, Scissors, Palette, Volume2, MonitorPlay } from 'lucide-react';
+import { Stack, Scissors, Palette, SpeakerHigh, MonitorPlay } from '@phosphor-icons/react';
 
 export default function FeatureAsymmetricGrid() {
   const skills = [
@@ -19,12 +19,12 @@ export default function FeatureAsymmetricGrid() {
       desc: 'Kích thích thị giác (Food), Trong trẻo (Beauty), Sang xịn mịn (Tech/Travel).',
     },
     {
-      icon: <Volume2 size={24} style={{ color: 'var(--color-lime-spark)' }} />,
+      icon: <SpeakerHigh size={24} style={{ color: 'var(--color-lime-spark)' }} />,
       title: 'Sound Design',
       desc: 'Thiết kế âm thanh sống động: tiếng xèo xèo, cắt thái, bấm nút công nghệ, sóng biển...',
     },
     {
-      icon: <Layers size={24} style={{ color: 'var(--color-lime-spark)' }} />,
+      icon: <Stack size={24} style={{ color: 'var(--color-lime-spark)' }} />,
       title: 'Beat-syncing',
       desc: 'Lựa chọn bối cảnh, cắt dựng theo nhịp nhạc mượt mà, tạo cảm xúc.',
     }
